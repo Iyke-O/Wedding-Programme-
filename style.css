@@ -1,0 +1,211 @@
+
+/* 1. Basic reset and colour palette */
+:root {
+    --ivory: #fbf8f1;
+    --white: #ffffff;
+    --gold: #b89556;
+    --dark-green: #244638;
+    --text: #343a35;
+    --muted: #777b75;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background-color: var(--ivory);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+/* 2. Wedding header */
+.hero {
+    background: var(--dark-green);
+    color: var(--white);
+    text-align: center;
+    padding: 70px 20px;
+    border-bottom: 5px solid var(--gold);
+}
+
+.eyebrow {
+    color: #e4cc9e;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-size: clamp(2.2rem, 8vw, 4rem);
+    font-weight: normal;
+    margin-bottom: 16px;
+}
+
+.couple-names {
+    font-size: clamp(2rem, 7vw, 3rem);
+    color: #e4cc9e;
+    margin-bottom: 18px;
+}
+
+.couple-names span {
+    color: var(--white);
+    font-style: italic;
+}
+
+.wedding-date {
+    font-size: 1.05rem;
+    margin-bottom: 5px;
+}
+
+.wedding-venue {
+    color: #d9e1dc;
+    font-size: 0.95rem;
+}
+
+/* 3. Main content layout */
+main {
+    width: min(100% - 32px, 760px);
+    margin: 0 auto;
+}
+
+section {
+    padding: 48px 0;
+}
+
+section h2 {
+    color: var(--dark-green);
+    text-align: center;
+    font-size: 2rem;
+    font-weight: normal;
+    margin-bottom: 18px;
+}
+
+.welcome,
+.closing {
+    text-align: center;
+}
+
+.welcome p,
+.closing p {
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--muted);
+}
+
+.section-intro {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 30px;
+}
+
+/* 4. Programme cards */
+.programme-list {
+    list-style: none;
+    display: grid;
+    gap: 14px;
+}
+
+.programme-list li {
+    background-color: var(--white);
+    border: 1px solid #eee6d8;
+    border-left: 4px solid var(--gold);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 14px rgba(36, 70, 56, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.programme-list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(36, 70, 56, 0.08);
+}
+
+.event-time {
+    display: inline-block;
+    color: var(--gold);
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.programme-list h3 {
+    color: var(--dark-green);
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin-bottom: 4px;
+}
+
+.programme-list li p {
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+/* 5. Closing message */
+.closing {
+    border-top: 1px solid #e7ddca;
+}
+
+.closing-note {
+    color: var(--dark-green) !important;
+    font-style: italic;
+    margin-top: 18px !important;
+}
+
+/* 6. Footer */
+footer {
+    text-align: center;
+    padding: 24px 16px;
+    background-color: var(--dark-green);
+    color: #d9e1dc;
+    font-size: 0.85rem;
+}
+
+/* 7. Mobile adjustments */
+@media (max-width: 480px) {
+    .hero {
+        padding: 55px 18px;
+    }
+
+    .eyebrow {
+        letter-spacing: 2px;
+    }
+
+    main {
+        width: calc(100% - 28px);
+    }
+
+    section {
+        padding: 36px 0;
+    }
+
+    section h2 {
+        font-size: 1.7rem;
+    }
+
+    .programme-list li {
+        padding: 17px;
+    }
+}
+
+/* 8. Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+}
+
