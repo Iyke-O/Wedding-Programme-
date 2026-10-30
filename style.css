@@ -209,3 +209,31 @@ footer {
     }
 }
 
+/* Get Directions Button */
+
+.venue-button-container {
+    margin-top: 25px;
+}
+
+.directions-btn {
+    background-color: var(--gold);
+    color: var(--white);
+    border: none;
+    padding: 13px 25px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease,
+                transform 0.3s ease;
+}
+
+.directions-btn:hover {
+    background-color: #a17d42;
+    transform: translateY(-2px);
+}
+
+.directions-btn:focus-visible {
+    outline: 3px solid var(--white);
+    outline-offset: 4px;
+}
