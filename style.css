@@ -105,48 +105,94 @@ section h2 {
     margin-bottom: 30px;
 }
 
-/* 4. Programme cards */
+
+/* 4. Wedding Programme Timeline */
+
+.programme {
+    padding: 65px 0;
+}
+
+.programme h2 {
+    font-size: 2.3rem;
+    margin-bottom: 12px;
+}
+
+.programme .section-intro {
+    margin-bottom: 45px;
+}
+
 .programme-list {
     list-style: none;
+    position: relative;
     display: grid;
-    gap: 14px;
+    gap: 22px;
+    padding-left: 45px;
+}
+
+/* Gold vertical timeline */
+.programme-list::before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    bottom: 15px;
+    width: 2px;
+    background: linear-gradient(
+        to bottom,
+        #c9a44c,
+        #e8d7ad,
+        #c9a44c
+    );
 }
 
 .programme-list li {
-    background-color: var(--white);
+    position: relative;
+    background: var(--white);
     border: 1px solid #eee6d8;
-    border-left: 4px solid var(--gold);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 14px rgba(36, 70, 56, 0.04);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 14px;
+    padding: 22px 24px;
+    box-shadow: 0 5px 18px rgba(36, 70, 56, 0.06);
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* Numbered gold timeline markers */
+.programme-list li::before {
+    content: counter(list-item, decimal-leading-zero);
+    position: absolute;
+    left: -45px;
+    top: 22px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--dark-green);
+    border: 2px solid var(--gold);
+    color: #f5dfac;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-size: 0.65rem;
+    font-weight: bold;
+    z-index: 1;
 }
 
 .programme-list li:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(36, 70, 56, 0.08);
-}
-
-.event-time {
-    display: inline-block;
-    color: var(--gold);
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    margin-bottom: 6px;
+    transform: translateX(5px);
+    box-shadow: 0 10px 25px rgba(36, 70, 56, 0.12);
 }
 
 .programme-list h3 {
     color: var(--dark-green);
-    font-size: 1.2rem;
-    font-weight: normal;
-    margin-bottom: 4px;
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin-bottom: 6px;
 }
 
 .programme-list li p {
     color: var(--muted);
-    font-size: 0.95rem;
+    font-size: 0.94rem;
+    line-height: 1.7;
 }
 
 /* 5. Closing message */
@@ -190,10 +236,27 @@ footer {
     section h2 {
         font-size: 1.7rem;
     }
+    .programme-list {
+    padding-left: 40px;
+    gap: 16px;
+}
 
-    .programme-list li {
-        padding: 17px;
-    }
+.programme-list li {
+    padding: 18px 15px;
+}
+
+.programme-list li::before {
+    left: -40px;
+    width: 30px;
+    height: 30px;
+    font-size: 0.6rem;
+}
+
+.programme-list h3 {
+    font-size: 1.05rem;
+}
+
+    
 }
 
 /* 8. Respect reduced-motion preferences */
@@ -238,47 +301,55 @@ footer {
     outline-offset: 4px;
 }
 
+
 /* PHOTO GALLERY */
 
 .gallery-section {
-    padding: 60px 20px;
+    padding: 70px 20px;
     background-color: var(--white);
     text-align: center;
 }
 
 .gallery-section h2 {
     color: var(--dark-green);
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 10px;
 }
 
 .gallery-intro {
     color: var(--muted);
-    margin-bottom: 35px;
+    margin-bottom: 40px;
 }
 
 .gallery-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 18px;
     max-width: 1000px;
     margin: auto;
 }
 
 .gallery-image {
     width: 100%;
-    height: 260px;
+    height: 280px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 14px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s ease,
+                box-shadow 0.4s ease,
+                border-color 0.4s ease;
 }
 
 .gallery-image:hover {
-    transform: scale(1.03);
+    transform: translateY(-6px) scale(1.02);
+    border-color: #c9a44c;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
 
 /* IMAGE VIEWER */
+
 
 .image-modal {
     display: none;
@@ -289,16 +360,24 @@ footer {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.94);
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
+
+.image-modal.show {
+    opacity: 1;
+}
+
 
 .image-modal img {
     max-width: 90%;
     max-height: 85vh;
     object-fit: contain;
-    border-radius: 8px;
+    border-radius: 12px;
+    border: 2px solid #c9a44c;
 }
 
 .close-modal {
@@ -308,25 +387,89 @@ footer {
     color: white;
     font-size: 40px;
     cursor: pointer;
+    transition: color 0.3s ease;
 }
+
+.close-modal:hover {
+    color: #c9a44c;
+}
+
+
+/* GALLERY NAVIGATION ARROWS */
+
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(201, 164, 76, 0.85);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.gallery-nav:hover {
+    background: #c9a44c;
+}
+
+.prev-image {
+    left: 25px;
+}
+
+.next-image {
+    right: 25px;
+}
+
+@media (max-width: 650px) {
+    .gallery-nav {
+        width: 38px;
+        height: 38px;
+        font-size: 18px;
+    }
+
+    .prev-image {
+        left: 8px;
+    }
+
+    .next-image {
+        right: 8px;
+    }
+}
+
 
 /* MOBILE RESPONSIVENESS */
 
 @media (max-width: 650px) {
+    .gallery-section {
+        padding: 50px 15px;
+    }
 
     .gallery-container {
         grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        gap: 12px;
     }
 
     .gallery-image {
-        height: 180px;
+        height: 190px;
     }
 
     .gallery-section h2 {
-        font-size: 1.6rem;
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .gallery-container {
+        grid-template-columns: 1fr;
     }
 
+    .gallery-image {
+        height: 240px;
+    }
 }
 
 /* DESIGNER CREDIT */
@@ -353,4 +496,138 @@ footer {
 .designer-credit span {
     color: var(--muted);
     font-size: 0.6rem;
+}
+
+
+
+.wedding-emblem {
+    width: 280px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 20px;
+    border: 2px solid #c9a44c;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+
+/* 9. WELCOME SECTION */
+
+.welcome {
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #f7f0df
+    );
+    border: 1px solid #e8d7ad;
+    border-radius: 18px;
+    padding: 45px 30px;
+    margin: 35px 0;
+    box-shadow: 0 8px 25px rgba(36, 70, 56, 0.06);
+}
+
+.welcome h2 {
+    color: var(--dark-green);
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.welcome p {
+    font-size: 1.05rem;
+    line-height: 1.9;
+}
+
+/* 10. THANK YOU SECTION */
+
+.closing {
+    background: var(--dark-green);
+    border: 2px solid var(--gold);
+    border-radius: 18px;
+    padding: 50px 30px;
+    margin: 45px 0;
+    box-shadow: 0 10px 30px rgba(36, 70, 56, 0.15);
+}
+
+.closing h2 {
+    color: #e4cc9e;
+    font-size: 2.3rem;
+    margin-bottom: 18px;
+}
+
+.closing p {
+    color: #edf1ed;
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+.closing .closing-note {
+    color: #e4cc9e !important;
+    font-size: 1.3rem;
+    font-style: italic;
+    margin-top: 22px !important;
+}
+
+/* MOBILE ADJUSTMENTS */
+
+@media (max-width: 480px) {
+    .welcome,
+    .closing {
+        padding: 35px 20px;
+        border-radius: 14px;
+    }
+
+    .welcome h2,
+    .closing h2 {
+        font-size: 1.8rem;
+    }
+
+    .welcome p,
+    .closing p {
+        font-size: 0.95rem;
+    }
+}
+
+
+/* MAKCORE ENTERPRISES WHATSAPP CONTACT */
+
+.designer-credit {
+    text-align: left;
+    padding: 20px 15px;
+}
+
+.designer-credit p {
+    color: #d9e1dc;
+    font-size: 0.7rem;
+    margin-bottom: 5px;
+}
+
+.designer-credit h3 {
+    color: #e4cc9e;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.whatsapp-contact {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    color: #25D366;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-contact:hover {
+    transform: translateY(-3px);
+}
+
+.whatsapp-icon {
+    width: 25px;
+    height: 25px;
+    color: #25D366;
 }
